@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<title>Tales of Nenda</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header>
+					<div class="box"> 
+						<h1>Welcome to the developer blog of Tales of Nenda, Endless Winter</h1>
+					</div>
+			</header>
+
+		<!-- Main -->
+			<div id="mainDevBlog">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2>Introduction</h2>
+							<p>Tales of Nenda, Endless winter, is a 2D sidescroller RPG in which you have to solve the mistery of a strange phenomena which covers a valley in deep snow in the middle of spring. If this winter continues the inhabitans in this valley will starve and freeze to death.
+							<br>
+							During this adventure you make new friends who will support you on your journey. The AI controlled allies behaviour can be individualy set to create a personal group, either aggressive, defensive, full mages, only axe figthers or mixed.
+							<br>
+							<br>
+							In this blog I will post sections about problems I faced and if some found solutions. There might also be some entries about how a part is structured or implemented.
+							</p>
+						</header>
+					</section>
+
+				<!-- Two -->
+					<section id="two">
+						<h2>UI Windows</h2>
+						<p>While creating UI windows a lot of different use cases have to be considered.<br>
+						First, let's start simple. If a window opens (let's call it W1) it has to be in the foreground. If a second one (W2) opens this has to go in front of W1. If we close W2, W1 has to be in focus again. Sounds like a simple Stack.
+						<br>
+						But now what if we can bring W1 to the front without closing W2 by clicking on it for example. To keep track which window has to be in front next, if we close W1, we have to rearange the stack. Not really the way a stack behaves, so maybe a LinkedList?
+						<br>
+						With a LinkedList we could also handle the closure of a window which is not in front at all and was closed by a key shortcut.
+						<br><br>
+						Let's get a bit more creative. What if windows have child windows? For example a character menu where when you select an ability a new window opens and you have to select an ability or you can't access the character menu anymore. What happens if now another window is brought into foreground and after that the character menu is selected. We now have to show the ability window not the character menu. So each window now might have a child window and we have to handle the relationship between them. If the parent window is closed, the child has to close as well.
+						<br>
+						What about popups, tooltips they always have to go in front. Maybe there is a window that blocks all others?
+						<br>
+						<br>
+						There are more use cases if we just keep thinking and all of them are solvable with enough effort, but is it necessary?
+						<br>
+						<br>
+						One of my favorit things, overengineering and one of the first things I needed to solve to make progress. First step, clearly define how the windows should work, what is needed, what types of windows are there, then find a good solution for exactly this use case and not consider any possible extensions which might appear later. If there will be new scenario later, deal with it later, else there will be no end to the planning phase.
+						</p>
+					</section>
+					<section id="two">
+						<h2>To be continued ...</h2>
+					</section>
+
+				<!-- Three -->
+					<section id="three">
+						<h4>If you have questions or feedback feel free to contact me at: <a href="mailto:morchul.dev@gmail.com">morchul.dev@gmail.com</a></h4>
+						<h4><a href="index.html">Back</a></h4>
+						<p></p>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+				<div class="box"> 
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/Morchul" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<!--<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>-->
+						<li><a href="mailto:morchul.dev@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Morchul</li><!--<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>-->
+					</ul>
+				</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
